@@ -2519,7 +2519,7 @@ function daftarMember()
 			$badCSRF = true;
 		}
 		
-		if ( empty($nama_lengkap) || empty($email) || empty($password) || empty($confirmed))
+		elseif ( empty($nama_lengkap) || empty($email) || empty($password) || empty($confirmed))
 		{
 			
 			$html[] = '<h2>Error</h2>
@@ -2544,26 +2544,19 @@ function daftarMember()
 				
 		}
 		// cek validitas penulisan email
-		elseif (strlen($email))
+		elseif (is_valid_email_address(trim($email)) == 0)
 		{
-			
-			if (is_valid_email_address(trim($email)) == 0) {
+			$html[] = '<h2>Error</h2>
+				  <div class="cleaner"></div>
+				  <blockquote><h3>Terjadi Kesalahan!</h3>
+				  <b>Alamat E-mail tidak valid!</b>
+				  </blockquote>';
 				
-				$html[] = '<h2>Error</h2>
-					  <div class="cleaner"></div>
-					  <blockquote><h3>Terjadi Kesalahan!</h3>
-					  <b>Alamat E-mail tidak valid!</b>
-					  </blockquote>';
-					
-				$html[] = '<script type="text/javascript">function leave() { window.location = "daftar-member";} setTimeout("leave()", 3640);</script>';
-				
-				
-			}
-				
+			$html[] = '<script type="text/javascript">function leave() { window.location = "daftar-member";} setTimeout("leave()", 3640);</script>';
 		}
 		
 		// cek password
-		if (!isset($password) || !isset($confirmed) || !$password || !$confirmed || $password != $confirmed )
+		elseif ($password != $confirmed )
 		{
 			$html[] = '<h2>Error</h2>
 					  <div class="cleaner"></div>
