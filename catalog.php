@@ -76,5 +76,4 @@ $fileDownloaded -> updateHits($filename);
   echo '<h3>Access forbidden!</h3>
   <p>Maaf, file yang Anda download sudah
   tidak tersedia atau filenya sudah dihapus</p>';
-  exit();
 }
