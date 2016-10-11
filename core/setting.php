@@ -27,7 +27,7 @@ define('PACK_VERSION', '1.4.0');
 define('PL_DBTYPE', 'mysql');
 define('PL_DBHOST', 'localhost');
 define('PL_DBUSER', 'root');
-define('PL_DBPASS', 'root');
+define('PL_DBPASS', '');
 define('PL_DBNAME', 'pilus');
 
 // Site configuration
