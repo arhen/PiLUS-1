@@ -607,7 +607,7 @@ function contactForm()
 function basket() 
 {
 
-	global $shoppingCart, $action, $productId, $sanitasi;
+	global $shoppingCart, $action, $productId, $sanitasi, $total, $totalberat;
 
 	$html = array();
 
@@ -859,7 +859,7 @@ function basket()
 function checkOut() 
 {
 
-	global $shoppingCart;
+	global $shoppingCart, $total, $totalberat;
 
 	$html = array();
 
@@ -1309,6 +1309,8 @@ if (!$customer -> isMemberLoggedIn())  {
 				$html[] = '<input type="hidden" name="csrf" value="'.$CSRF.'"/>';
 				$html[] = '<input type="hidden" name="fullname" value="'.$data_kustomer -> fullname.'"/>';
 				$html[] = '<input type="hidden" name="email" value="'.$data_kustomer -> email.'"/>';
+				$html[] = '<input type="hidden" name="customer_id" value="'.$data_kustomer -> ID.'"/>';
+				$html[] = '<input type="hidden" name="password" value="'.$data_kustomer -> password.'"/>';
 				$html[] = '<input type="submit" name="send" class="button" value="Proses">';
 				$html[] = '</form>';
 				
@@ -1345,6 +1347,9 @@ if (!$customer -> isMemberLoggedIn())  {
 			$alamat_member = isset($_POST['address']) ? preventInject($_POST['address']) : "";
 			$kota = isset($_POST['city']) ? (int)$_POST['city'] : 0;
 			$pengiriman = isset($_POST['shipping']) ? (int)$_POST['shipping'] : 0;
+			$email = isset($_POST['email']) ? $_POST['email'] : "";
+			$password = isset($_POST['password']) ? $_POST['password'] : "";
+
 			
 			$badCSRF = true; // check CSRF
 			
@@ -1396,10 +1401,7 @@ if (!$customer -> isMemberLoggedIn())  {
 				$html[] = '<script type="text/javascript">function leave() { window.location = "checkout-shopping";} setTimeout("leave()", 3640);</script>';
 			}
 			else 
-			{
-				$badCSRF = false;
-				unset($_SESSION['CSRF']);
-				
+			{	
 				$data = array(
 						
 						'ID' => $id_member,
@@ -1413,6 +1415,20 @@ if (!$customer -> isMemberLoggedIn())  {
 				
 				$update_dataMember = new Customer($data);
 				$lastUpdated = $update_dataMember -> updateMemberById();
+
+				$badCSRF = false;
+				
+				unset($_SESSION['CSRF']);
+
+				$_SESSION['memberLoggedIn'] = true;
+			
+				$sesi_lama = session_id();
+				
+				session_regenerate_id();
+				
+				$sesi_baru = session_id();
+				
+				$update_sesiMember = $customer ->updateMemberSessionWithoutRedirect($sesi_baru, $email);
 				
 				if ( $lastUpdated == 1) {
 					$transaksi_member = $order -> simpanTransaksiMember($email, $password);
@@ -1455,7 +1471,6 @@ if (!$customer -> isMemberLoggedIn())  {
 		$html[] = '<script type="text/javascript">function leave() {  window.location = "./";} setTimeout("leave()", 15000);</script>';
 		
 	}
-	
 }
 
 return implode("\n", $html);
