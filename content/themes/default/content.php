@@ -1395,11 +1395,11 @@ if (!$customer -> isMemberLoggedIn())  {
 					</blockquote>';
 				$html[] = '<script type="text/javascript">function leave() { window.location = "checkout-shopping";} setTimeout("leave()", 3640);</script>';
 			}
-			else 
-			{
+			else {
+
 				$badCSRF = false;
 				unset($_SESSION['CSRF']);
-				
+
 				$data = array(
 						
 						'ID' => $id_member,

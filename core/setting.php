@@ -16,7 +16,7 @@
 ini_set('memory_limit', '64M');
 
 // set timezone
-date_default_timezone_set('Asia/Jakarta');
+date_default_timezone_set('Asia/Makassar');
 
 // Package detail
 define('PACK_TITLE', 'PiLUS');
@@ -27,12 +27,12 @@ define('PACK_VERSION', '1.4.0');
 define('PL_DBTYPE', 'mysql');
 define('PL_DBHOST', 'localhost');
 define('PL_DBUSER', 'root');
-define('PL_DBPASS', 'root');
+define('PL_DBPASS', '');
 define('PL_DBNAME', 'pilus');
 
 // Site configuration
-define('PL_DIR', 'http://localhost/pilus/');  // define site path
-define('PL_SITEEMAIL', 'admin@localhost'); 
+define('PL_DIR', 'http://localhost/pilus-ecommerce/');  // define site path
+define('PL_SITEEMAIL', 'itsme.arhen@gmail.com'); 
 define('PL_SITEKEY', 'd0d48739c3b82db413b3be8fbc5d7ea1c1fd3e2792605d3cbfda1HEM78!!');
 define('PL_CONTENT', 'content/themes');
 define('PL_CORE', 'core');
@@ -41,7 +41,7 @@ define('PL_FILES', 'content/uploads/files/');
 define('PRODUCT_IMAGE_PATH', 'content/uploads/products');
 define('IMG_TYPE_FULLSIZE', 'fullsize');
 
-define('SEND_ERRORS_TO', 'webdev@kartatopia.com');  // set email notification email address
+define('SEND_ERRORS_TO', 'itsme.arhen@gmail.com');  // set email notification email address
 define('DISPLAY_DEBUG', true); // display db errors?
 
 if (!defined('PL_SYSPATH')) define('PL_SYSPATH', dirname(dirname(__FILE__)) . '/');
