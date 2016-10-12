@@ -330,7 +330,7 @@ class Order
 	 */
 	public function simpanTransaksi($customerID)
 	{
-		global $option, $shippingCost, $shoppingCart;
+		global $option, $shippingCost, $shoppingCart, $total, $totalberat, $total_rp;
 
 		$dbh = new Pldb;
 
@@ -528,7 +528,7 @@ class Order
 	 */
 	public function simpanTransaksiMember($email = null, $password = null)
 	{
-		global $option, $shippingCost, $shoppingCart, $customer;
+		global $option, $shippingCost, $shoppingCart, $customer, $total, $totalberat, $total_rp;
 
 		$dbh = new Pldb;
 
@@ -1158,4 +1158,5 @@ class Order
 		return $sth -> fetch();
 
 	}
+>>>>>>> issue1
 }

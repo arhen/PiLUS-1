@@ -579,6 +579,33 @@ class Customer extends Plbase
 		}
 		
 	}
+
+	// Update member secion wihtout redirecting
+	public function updateMemberSessionWithoutRedirect($sessionKey, $email)
+	{
+		$dbh = parent::hook();
+		
+		$sql = "UPDATE pl_customers SET customer_session = ? WHERE email = ? ";
+		
+		$generateKey = generateSessionKey($sessionKey);
+		
+		$data = array($generateKey, $email);
+		
+		$sth = $dbh -> pstate($sql, $data);
+		
+		$data_kustomer = $this->fetchMemberData($email);
+		
+		if ( isset($_SESSION['memberLoggedIn']) && $_SESSION['memberLoggedIn'] == true)
+		{
+			$_SESSION['member_id'] = $data_kustomer['ID'];
+			$_SESSION['member_fullname'] = $data_kustomer['fullname'];
+			$_SESSION['member_email'] = $data_kustomer['email'];
+			$_SESSION['member_pass'] = $data_kustomer['password'];
+			$_SESSION['member_type'] = $data_kustomer['customer_type'];
+			$_SESSION['member_session'] = $data_kustomer['customer_session'];
+		}
+		
+	}
 	
 	/**
 	 * @method signOutMember
@@ -935,4 +962,5 @@ class Customer extends Plbase
 		
 	}
 	
+>>>>>>> issue1
 }
