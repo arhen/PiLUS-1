@@ -1158,5 +1158,4 @@ class Order
 		return $sth -> fetch();
 
 	}
->>>>>>> issue1
 }

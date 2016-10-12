@@ -3986,6 +3986,4 @@ function searchProduct()
 	}
 	
 	return implode("\n", $html);
-	
->>>>>>> issue1
 }

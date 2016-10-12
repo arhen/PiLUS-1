@@ -961,6 +961,4 @@ class Customer extends Plbase
 		return $sth -> fetchObject();
 		
 	}
-	
->>>>>>> issue1
 }
