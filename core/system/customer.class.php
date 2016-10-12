@@ -580,6 +580,7 @@ class Customer extends Plbase
 		
 	}
 
+	// Update member secion wihtout redirecting
 	public function updateMemberSessionWithoutRedirect($sessionKey, $email)
 	{
 		$dbh = parent::hook();
